@@ -1,0 +1,24 @@
+plugins {
+    id 'com.github.johnrengelman.shadow' version '7.1.0'
+}
+
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.google.guava:guava:32.1.2-jre'
+}
+
+shadowJar {
+    archiveBaseName.set('gradleHelloOtusGuava')
+    archiveVersion.set('0.1')
+    archiveClassifier.set('')
+    manifest {
+        attributes 'Main-Class': 'ru.otus.pro.hw1.gradle.HelloOtus'
+    }
+}
+
+tasks.build.dependsOn tasks.shadowJar
