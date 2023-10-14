@@ -1,4 +1,4 @@
 rootProject.name = 'OTUS_Pro'
 include 'hw1-gradle'
-
+include 'hw3-generics'
 
