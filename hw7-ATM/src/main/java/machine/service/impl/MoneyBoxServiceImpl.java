@@ -13,7 +13,10 @@ public class MoneyBoxServiceImpl implements MoneyBoxService {
 
     @Override
     public int checkSum(MoneyBox moneyBox) {
-        return moneyBox.getNote100() * 100 + moneyBox.getNote500() * 500 + moneyBox.getNote1000() * 1000 + moneyBox.getNote5000() * 5000;
+        return moneyBox.getNote100() * NOMINAL100 +
+                moneyBox.getNote500() * NOMINAL500 +
+                moneyBox.getNote1000() * NOMINAL1000 +
+                moneyBox.getNote5000() * NOMINAL5000;
     }
 
     @Override
@@ -21,7 +24,6 @@ public class MoneyBoxServiceImpl implements MoneyBoxService {
         if (moneyBox == null) {
             throw new IllegalStateException("No money box");
         }
-
         moneyBox.setNote100(moneyBox.getNote100() + note100);
         moneyBox.setNote500(moneyBox.getNote500() + note500);
         moneyBox.setNote1000(moneyBox.getNote1000() + note1000);
@@ -43,31 +45,31 @@ public class MoneyBoxServiceImpl implements MoneyBoxService {
         int chargedNotes;
         int requiredNotes;
 
-        if (sum >= 5000) {
-            requiredNotes = sum / 5000;
+        if (sum >= NOMINAL5000) {
+            requiredNotes = sum / NOMINAL5000;
             chargedNotes = Math.min(requiredNotes, moneyBox.getNote5000());
-            sum -= chargedNotes * 5000;
+            sum -= chargedNotes * NOMINAL5000;
             result.set(0, chargedNotes);
         }
 
-        if (sum >= 1000) {
-            requiredNotes = sum / 1000;
+        if (sum >= NOMINAL1000) {
+            requiredNotes = sum / NOMINAL1000;
             chargedNotes = Math.min(requiredNotes, moneyBox.getNote1000());
-            sum -= chargedNotes * 1000;
+            sum -= chargedNotes * NOMINAL1000;
             result.set(1, chargedNotes);
         }
 
-        if (sum >= 500) {
-            requiredNotes = sum / 500;
+        if (sum >= NOMINAL500) {
+            requiredNotes = sum / NOMINAL500;
             chargedNotes = Math.min(requiredNotes, moneyBox.getNote500());
-            sum -= chargedNotes * 500;
+            sum -= chargedNotes * NOMINAL500;
             result.set(2, chargedNotes);
         }
 
-        if (sum >= 100) {
-            requiredNotes = sum / 100;
+        if (sum >= NOMINAL100) {
+            requiredNotes = sum / NOMINAL100;
             chargedNotes = Math.min(requiredNotes, moneyBox.getNote100());
-            sum -= chargedNotes * 100;
+            sum -= chargedNotes * NOMINAL100;
             result.set(3, chargedNotes);
         }
 
