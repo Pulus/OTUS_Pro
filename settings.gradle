@@ -3,4 +3,5 @@ include 'hw1-gradle'
 include 'hw3-generics'
 include 'hw3-reflection'
 include 'hw7-ATM'
+include 'hw8-patterns'
 
